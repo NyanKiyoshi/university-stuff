@@ -1,0 +1,133 @@
+% !TeX spellcheck = fr_FR
+\documentclass[final, a4paper, 13pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{colortbl}
+\usepackage{xhfill}
+\usepackage{sectsty}
+\usepackage{fancyhdr}
+\usepackage{ifthen}
+\usepackage{dirtytalk}
+
+% Set sections title font size
+\sectionfont{\fontsize{13}{15}\selectfont}
+
+% Set footers and headers
+\pagestyle{fancy}
+\definecolor{headercolor}{rgb}{0.6941,0.6745,0.4863}
+\renewcommand{\headrulewidth}{3pt}
+\renewcommand{\headrule}{
+    \ifthenelse{\value{page}=1}{
+        % if it's the first page, set the title border
+        \hbox to\headwidth{
+            \color{headercolor}\leaders\hrule height \headrulewidth\hfill
+        }
+    }{
+        % second page...
+    }
+}
+\fancyhf{} % clear all header and footer fields
+\fancyhead[C]{
+    \ifthenelse{\value{page}=1}{
+        % if it's the first page, set the title
+        {\scriptsize{KOCAK Mikail, ABID Othmane \hfill Novembre 2018}} \\[5pt]
+        \large\textbf{
+            L'employeur peut-il épier l'utilisation des outils numériques par ses salariés ?
+        }
+    }{
+        % second page...
+    }
+}
+
+
+\begin{document}
+
+~\\[-10pt]
+
+\begin{multicols}{2}
+
+\vspace*{\fill}
+
+\section*{Introduction}
+Aujourd'hui, nous avons évolué depuis nos inquiétudes d'être écoutés dans nos conversations,
+que cela soit au téléphone, ou via microphones cachés, ou encore que les lettres soient lues, etc. ; vers
+dans notre aire actuelle de la révolution numérique ; où la majorité de nos informations
+et activités flottent dans ce qu'on appelle le ``cloud", nous avons donc
+à nous poser la question suivante :
+Comment pouvons-nous être surveillés, traqués, quelles sont les limites et comment protéger nos
+informations. Aujourd'hui, l'un des grands risques d'atteinte sur la vie privée des gens est leur lieu de travail, où la grande majorité du temps est passé.
+
+Notre entreprise peut nous espionner via des enregistreurs de frappe et de mot de passes (keyloggers),
+via des enregistreurs d'écran (screenloggers) ou encore via des serveurs de relais, 
+mais aussi via des détournements de réseaux,
+etc. \cite{spywares}
+
+Nous allons donc étudier ce qu'un employeur, 
+peut et ne peut pas faire avec les outils numériques de ses employés.
+Donc, de tout appareil et logiciel informatique,
+comme les téléphones, les ordinateurs, navigateurs web, etc. 
+Que cela soit la propriété ou non de l'entreprise.
+
+\vspace*{\fill}
+
+\columnbreak
+
+\section{Les droits d'accès de l’employeur}
+Tout d'abord, l'employeur est tenu d'informer, et d'obtenir l'accord des salariés 
+de tout dispositif de surveillance, sérieusement justifié, et mis en place ;
+ainsi que les modalités de contrôle, en incluant toute durée de stockage,
+le cas échéant. Que cela soit par le moyen d’une charte, ou d’une note \cite{orange}.
+
+Les contrôles doivent avoir pour objectif, seul :
+
+\begin{itemize}
+    \item D’assurer la sécurité des réseaux contre des attaques (virus, intrusions, ...) ;
+    \item De limiter les risques d’abus de l'accès internet ou des ressources mises à disposition 
+    (achats de produits, discussions sur les réseaux sociaux, utilisation intensive du processeur, 
+    du disque dur, etc.).
+\end{itemize}
+
+\section{Les garanties pour la vie privée}
+L’employeur ne peut pas excessivement recevoir toutes les données en copie automatique (messages envoyés ou reçus, touches appuyés, etc.).
+
+Même si l'employeur a interdit tout usage des outils de l’entreprise à des fins personnelles,
+toute donnée personnelle doit être identifiée comme telle ; par exemple en intitulant le nom du fichier, l'objet du courriel, etc. avec la mention « Personnel » ou « Privé »
+\cite{garantie-secret}. L'employeur sera donc en obligation de demander le consentement et la présence du salarié.
+
+À défaut d'une telle mention, l'employeur est libre d'accéder aux données, car elle sont considérées 
+comme ayant un caractère professionnel \cite{Cass0448}.
+
+\section{Les limites de la vie privée}
+L'employeur est en droit d’accéder aux données (documents, courriels, ...) identifiés comme privées
+sur les appareils mis à sa disposition sans accord préalable \cite{L2313-2},
+s'il y a atteinte aux droits des personnes \cite{L1121-1}.
+
+\end{multicols}
+
+\vspace*{\fill}
+
+\begin{thebibliography}{9}
+    \bibitem{spywares} What Types of Spyware are Out There?
+    (\hyperlink{https://www.toptenreviews.com/software/articles/types-of-spyware/}{toptenreviews.com})
+    [24 Nov 2018].
+    \bibitem{orange} La cybersurveillance sur les lieux de travail : les droits et devoirs du salarié et de l’employeur
+    (\hyperlink{https://assistance.orange.fr/ordinateurs-peripheriques/installer-et-utiliser/la-securite/risques-et-prevention/conseils-et-reglementation/la-cybersurveillance-sur-les-lieux-de-travail-les-droits-et-devoirs-du-salarie-et-de-l-employeur_77766-78734}{assistance.orange.fr})
+    [24 Nov 2018].
+    \bibitem{garantie-secret} La cybersurveillance des salariés : Les enjeux, les limites, les droits et devoirs des employeurs
+    (\hyperlink{https://www.ldsconseil.fr/la-cybersureillance-des-salaries-les-enjeux-les-limites-les-droits-et-devoirs-des-employeurs}{ldsconseil.fr})
+    [24 Nov 2018].
+    \bibitem{L2313-2} Article L2313-2 du code du travail, \emph{
+    « L'employeur procède sans délai à prendre les dispositions nécessaires pour remédier à cette situation. »} (\hyperlink{https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006901852&dateTexte=20120207}{legifrance.gouv.fr})
+    [22 Nov 2018].
+    \bibitem{Cass0448} Cass. Soc 18 octobre 2006 n°04-48.025, \emph{
+    « les dossiers et fichiers créés par un salarié grâce à l’outil informatique mis à sa disposition par son employeur pour l’exécution de son travail sont présumés, sauf si le salarié les identifie comme étant personnels, avoir un caractère professionnel de sorte que l’employeur peut y avoir accès hors sa présence. »}.
+    \bibitem{L1121-1} Article L1121-1 du code du travail, \emph{« Nul ne peut apporter aux droits des personnes et aux libertés individuelles [...]. »} (\hyperlink{https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006900785}{legifrance.gouv.fr})
+    [22 Nov 2018].
+\end{thebibliography}
+
+\end{document}

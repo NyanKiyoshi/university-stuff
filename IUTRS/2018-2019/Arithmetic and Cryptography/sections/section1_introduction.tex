@@ -1,0 +1,76 @@
+\section{Introduction sur la crypto}
+
+\subsection{De l'antiquité au XIX\textsuperscript{e} siècle}
+    \begin{itemize}
+        \item Dans un objectif de confidentialité ;
+        \item Le chiffrement repose sur des permutations et des
+            substitutions (mono ou poly) alphabétiques ;
+        \item C'est un artisanat, et non pas un art scientifique
+            et c'est un secret.
+    \end{itemize}
+
+\subsection{L'ère de la guerre industrielle}
+    \begin{itemize}
+        \item Les communications sont importantes ;
+        \item La cryptographie progresse ;
+        \item Le premier texte énonçant des principes systématiques,
+            il est connu sous le nom du \emph{Principe de Kerckhoffs},
+            qui en résumé, dit :
+            
+            \quad \boxed{
+                \texttt{Le secret doit résider dans la clef et non dans le procédé
+                de chiffrement.}
+            }
+            \cite{Auguste Kerckhoffs}
+            
+            C'est donc plus facile à changer. Par exemple, communiquer
+            à 100000 hommes une clef plutôt qu'une nouvelle méthode complexe.
+        \item \textbf{Confusion, Diffusion,} 
+            changer au maximum le message dès lorsqu'un bit change.
+    \end{itemize}
+    
+\subsection{Les années 70 : double révolution}
+    \begin{itemize}
+        \item Explosion des besoins en cryptographie à clé publique ;
+        \item Premier standard de chiffrement par blocs plus ou moins
+            universel : DES\footnote{Data Encryption Standard} (RSA),
+            qui simplifie les communications, tout le monde se met d'accord.
+    \end{itemize}
+    
+\subsection{Cryptographie à clef publique}
+    \begin{itemize}
+        \item Facile à calculer ;
+        \item Difficile à dé-calculer, \textbf{sauf si on sait une chose en plus.}
+    \end{itemize}
+    
+\subsection{Standard de chiffrement par blocs}
+    \begin{itemize}
+        \item 1977 DES est né ;
+        \item 1990, DES est déclaré trop vulnérable au brute force,
+            car la clef est trop courte (56 bits) ;
+        \item 2000, un concours international est lancé pour choisir un nouvel
+            algorithme. L'algorithme de Rijndael (aujourd'hui nommé AES) est gagnant.
+        \item Les clés AES sont de 128, 192 ou 256 bits. Ce qui rend les attaques
+            brute force quasiment physiquement impossibles.
+    \end{itemize}
+    
+\subsection{Aujourd'hui}
+    \begin{itemize}
+        \item On veut de la confidentialité ;
+        \item On veut assurer l'intégrité des échanges 
+            (ne pas pouvoir modifier le message) ;
+        \item L'authentification (y compris signature),
+            on doit assurer que le destinataire est le vrai.
+    \end{itemize}
+    
+    ~
+    
+    Le certificat de la clef publique permet d'assurer que seule cette
+    personne saura déchiffrer le message. Le certificat est vérifié via
+    la signature.
+    
+\vspace*{\fill}
+\begin{thebibliography}{1}
+    \bibitem{Auguste Kerckhoffs}
+    Auguste Kerckhoffs
+\end{thebibliography}

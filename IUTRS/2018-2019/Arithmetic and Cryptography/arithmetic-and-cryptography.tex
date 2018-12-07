@@ -1,0 +1,48 @@
+% !TeX spellcheck = fr_FR
+
+\documentclass[final]{article}
+\usepackage{multicol}
+\usepackage[a4paper, total={6.5in, 10in}]{geometry}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[official]{eurosym}
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{etoolbox}
+\usepackage{qrcode}
+\usepackage{titling}
+\usepackage{caption}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\renewcommand\maketitlehooka{\null\mbox{}\vfill}
+\renewcommand\maketitlehookd{\vfill\null}
+
+\DeclareCaptionType{equ}[][]
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+{\endminipage\par\medskip}
+
+\title{Arithmétique et Cryptographie (M32)}
+\author{KOCAK Mikail}
+\date{8 novembre 2018}
+
+\begin{document}
+    \begin{titlingpage}
+        \maketitle
+        \tableofcontents
+    \end{titlingpage}
+    
+    \input{sections/section1_introduction.tex}
+    \input{sections/section2.0_arithmetique_elementaire.tex}
+    \input{sections/section3.0_arithmetique_modulaire.tex}
+\end{document}

@@ -1,0 +1,48 @@
+\subsection{Théorème fondamental de l'arithmétique}
+
+\subsubsection{Définition}
+    Un entier positif est dit \textbf{premier} s'il possède exactement deux
+    diviseurs positifs.
+        
+    Les résultats suivants sont démontrés dans les \emph{Éléments} d'Euclide,
+    IV\textsuperscript{e} s.
+    
+\subsubsection{Proposition}
+    \begin{enumerate}
+        \item Soit $a$ un entier positif :
+             \begin{itemize}
+                 \item ou bien $a$ est premier,
+                 \item ou bien $a$ admet un diviseur premier inférieur ou égal à
+                    $\sqrt{a}$.
+             \end{itemize}
+         \item Il existe une infinité de nombres premiers.
+    \end{enumerate}
+    
+\subsubsection{Démonstration}
+    \begin{itemize}
+        \item En effet, si $a$ n'est pas premier, il admet des diviseurs,
+            et le plus petit d'entre eux sera premier...
+        \item Par l'absurde, en considérant le produit de tous les premiers
+            augmenté de $1$...
+    \end{itemize}
+    
+\subsubsection{Théorème (Th. Fondamental de l'arithmétique)}
+    Soit $\mathcal{P}$ l'ensemble (infini) des nombres premiers,
+    tout entier positif admet une décomposition unique, à l'ordre près
+    des facteurs, comme produit de nombre premiers :
+    
+    \[
+        n = \prod_{p \in \mathcal{P}}^{} p^{v_p(n)},
+    \]
+    
+    où les entiers $v_p(n)$ sont nuls sauf pour un nombre fini de premiers $p$.
+    
+    \noindent\textbf{Démonstration}\\
+    \indent L'existence est une récurrence facile sur les entiers, l'unicité est la partie
+    la plus « forte » de l'énoncé : c'est aussi une récurrence sur les entiers,
+    où le cas de « base » est celui des nombres premiers, et où l'étape de
+    récurrence s'appuie sur le lemme de Gauß.
+    
+    \noindent\textbf{Remarque}\\
+    \indent Il n'y a pas d'algorithme efficace connu permettant de générer les nombres
+    premiers, ou de factoriser un entier.

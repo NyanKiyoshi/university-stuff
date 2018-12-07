@@ -1,0 +1,45 @@
+% https://web.archive.org/web/20180429012925/http://mathonline.wikidot.com/the-ring-of-z-nz
+% https://people.math.umass.edu/~hajir/m499c/m499c-hw1.pdf
+\subsection{L'anneau $\Z/n\Z$ -- Les entiers modulaires $n$}
+
+\subsubsection{Définition}
+    Soit $n \in \N^*$, on définit la relation suivante sur $\Z$ :
+    \[
+        x \equiv y \mod n \iff n | (x-a)
+    \]
+    
+    L'ensemble des classes d'équivalences est noté $\Z/n\Z$. On note, 
+    $ \dot{a} \in \Z/n\Z $, ou encore $ \bar{a} \in \Z/n\Z $, 
+    la classe de l'entier $ a \in \Z $.
+
+\subsubsection{Proposition}
+    Pour tous entiers $a$, et $b$, on a une relation d'équivalence de :
+    \begin{enumerate}
+        \item $a \equiv b \mod n$
+        \item $a$ et $b$ ont le même reste dans la division euclidienne par $n$.
+    \end{enumerate}
+
+\subsubsection{Caractéristiques}
+    \begin{description}
+        \item[Réflexivité :] $n | 0 = a - a$, donc $a \equiv a[n]$ ;
+        \item[Surjection :]
+            \begin{flalign*}
+                a \equiv b[n] &\iff n / (b-a) && \\
+                              &\iff n / (a-b) && \\
+                              &\iff b \equiv a[n] &&
+            \end{flalign*}
+    \end{description}
+    
+    Par conséquent, un système "naturel" de représentants des classes
+    est l'ensemble des entiers compris entre $0$ et $n-1$ :
+    chaque entier est représenté par son reste dans la division euclidienne 
+    par $n$.\\
+    
+    \noindent\textbf{Remarque :}
+        \noindent Il peut être intéressant (surtout pour les calculs "à la main"),
+        de travailler avec un autre système de représentants :
+        
+        \begin{align*}
+            \Z/5\Z &= \{\bar{0}, \bar{1}, \bar{2}, \bar{3}, \bar{4}\} \\
+                   &= \{\bar{-2}, \bar{-1}, \bar{0}, \bar{1}, \bar{2}\}
+        \end{align*}

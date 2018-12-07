@@ -1,0 +1,77 @@
+\subsection{Algorithme d'Euclide}
+
+\subsubsection{Division eucliedienne}
+    Deux entiers positifs $a$ et $b$, avec $b > 0$.
+    Il existe un unique couple d'entier positifs $(q, r)$, tels que :
+
+    \[
+        \begin{cases}
+            a = bq + r &\\
+            0 \le r < b
+        \end{cases}
+    \]
+    
+    Les entiers $q$ et $r$ sont appelés respectivement \textbf{quotient}
+    et \textbf{reste} de la division euclidienne de $a$ par $b$.\\
+    
+    \noindent\textbf{Démonstration}\\
+    \indent Il suffit de remarquer que 
+    $\{ a - bx | x \in \N, a - bx \ge 0 \} $ est un ensemble non vide
+    (il y a au moins $a$) qui admet donc un plus petit élément,
+    d'où $r$, puis $q$...
+
+\subsubsection{PGCD}
+    Le calcul de $pgcd(a, b)$ peut-être obtenu par une suite de
+    division euclidiennes : c'est \textbf{l'algorithme d'Euclide}.
+
+    Comme il est évident que $pgcd(a, 0) = a$, on peut supposer
+    $0 < b \le a$ :
+    
+    \begin{align*}
+        a   &= bq_1 + r_1  \\
+        b   &= r_1q_2 + r_2  \\
+        r_1 &= r_2q_3 + r_3  \\
+        \text{...} &\quad \text{...} \quad \text{...}  \\
+        r_{n-2} &= r_{n-1}q_n + r_n  \\
+        r_{n-1} &= r_nq_{n+1} + 0  \\
+    \end{align*}
+    
+    \begin{enumerate}
+        \item La suite des restes est strictement décroissante
+            à valeur positive donc finit par prendre la valeur $0$ :
+            arrêt de l'algorithme.
+        \item En parcourant les lignes de calcul de haut en bas,
+            on voit que tout diviseur de $a$ et $b$ est diviseur
+            de la suite des restes.
+        \item En les parcourant de bas en haut, on voit que
+            $r_n$ est diviseur commun de $a$ et de $b$ ;
+            on en déduit $r_n = pgcd(a,b)$.
+    \end{enumerate}
+
+\newtheorem*{identBezout}{Identité de Bézout}
+\subsubsection{L'identité de Bézout}
+    On peut aussi utiliser chacune des divisions euclidiennes de l'algorithme
+    d'Euclide, de haut en bas, pour exprimer le reste $r_k$ comme combinaison
+    linéaire de $a$ et de $b$, ce qui donne, pour $k = n$ :
+    
+    \begin{identBezout}
+        Pour tous entiers positifs $a$, $b$, il existe des entiers (relatifs)
+        $u$ et $v$ (parfois appelés « coefficients de Bézout »), tels que :
+        
+        \[
+            au + bv = pgcd(a, b)
+        \]
+    \end{identBezout}
+        
+    Deux conséquences de l'identité de Bézout :
+        
+    \begin{enumerate}
+        \item \textbf{Corollaire :} 
+            $a$ et $b$ sont \textbf{premiers entre eux} 
+            (i.e. $pgcd(a,b) = 1$) si et seulement s'il existe des entiers
+            $u$ et $v$ tels que $au + bv = 1$.
+        \item \textbf{Lemme de Gauß :}
+            Si $a$ divise le produit $bc$, donc, $a | bc$ et $pgcd(a, b) = 1$
+            ($a$ et $b$ sont donc premiers entre eux), alors $a | c$.
+    \end{enumerate}
+    
