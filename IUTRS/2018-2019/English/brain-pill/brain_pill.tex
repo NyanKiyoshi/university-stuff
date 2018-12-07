@@ -1,0 +1,193 @@
+% !TeX spellcheck = en_US
+% requires: texlive-latexextra texlive-pictures texlive-fontsextra
+\documentclass[10.5pt]{article}
+
+\usepackage{multicol}
+\usepackage[a4paper, total={6.5in, 10in}]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[sfdefault]{roboto}
+\usepackage{graphicx}
+\usepackage{etoolbox}
+\usepackage{qrcode}
+\usepackage{vwcol}
+\usepackage{float}
+ 
+\makeatletter
+  % change separation between dots
+  \renewcommand\@dotsep{2.5} %default: 4.5
+  
+  % add dots to the section titles in the TOC
+  \renewcommand*\l@section{\noindent\@dottedtocline{1}{1.5em}{2.3em}}
+  \renewcommand*\l@subsection{\@dottedtocline{2}{3.8em}{3.2em}}
+  \renewcommand*\l@subsubsection{\@dottedtocline{3}{7.0em}{4.1em}}
+  \renewcommand*\l@paragraph{\@dottedtocline{4}{10em}{5em}}
+  \renewcommand*\l@subparagraph{\@dottedtocline{5}{12em}{6em}}
+\makeatother
+
+\newcommand{\tm}{\emph{Brain Pill\nth{TM} }}
+\newcommand{\softwareUrl}{https://brain-pill.vanille.bid/}
+
+\newcommand{\nth}{\textsuperscript}
+\makeatletter
+\renewcommand\tableofcontents{%
+  \null\hfill\textbf{\Huge Table Of Contents}\hfill\null\par\paragraph{}
+  \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
+  \@starttoc{toc}%
+}
+\makeatother
+
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+\newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
+
+\title{Brain Pill(TM) - User Guide}
+\author{KOCAK Mikail, GROSJEAN Martin}
+\date{14\nth{th} September 2018}
+
+\begin{document}
+  % controlled by script over Wi-Fi/ bluetooth.
+  % powered by....
+  \vspace*{\fill}
+  
+  \centerline{\textbf{\centering\Huge B~R~A~I~N\ \ \ \ P~I~L~L  }}
+  ~\\[0pt]
+  \centerline{\noindent\rule{4in}{1pt}}
+  ~\\[0pt]
+  
+  \noindent\centerline{\textbf{\centering\Huge User Guide}}
+  ~\\[0pt]
+  
+  \vspace*{\fill}
+  
+  \begin{tightcenter}
+    \large
+    Please carefully read this guide before using our product\\
+    and keep it for any future reference or issues.
+  \end{tightcenter}
+  
+  \newpage
+  
+  % TOC
+  \vspace*{\fill}
+    \tableofcontents
+  \vspace*{\fill}
+  
+  \newpage
+  
+  \section{Introduction}
+  \tm is based on SSRIs to inject a micro-controller
+  to one's hippocampus and take over the body remotely.
+  
+  \tm is endowed with a \emph{plug and play} technology allowing you
+  to start controlling \tm within seconds
+  \footnote{The pill requires two to three minutes to be fully active after swallowing.} by
+  simply connecting a game controller to your device.
+  
+  \section{Quick Start}
+    \begin{vwcol}[widths={0.85,0.15}, sep=.8cm, justify=flush,rule=0pt,indent=1em]
+      \indent 1. Grab our software at \texttt{\softwareUrl} \\\indent\quad
+                 or flash our \emph{QRCode};\\
+      \indent 2. Swallow a pill;\\
+      \indent 3. Wait 2 minutes;\\
+      \indent 4. Plug in a game controller and enjoy!
+      
+      \vfill\eject
+      \qrcode[height=.8in]{\softwareUrl}
+    \end{vwcol}
+    
+    \begin{figure}[H]
+    	\centering
+      \includegraphics[width=.75\textwidth]{brainpill/ps3-brainpillcontroller.png}
+      \caption[Close up of {Hemidactylus}]{controls for a PS4 game controller.}
+    \end{figure}
+  
+  \section{Uses for \tm}
+  \tm belongs to the \emph{Norwegian Psychiatrist Research Institute}, 
+  which researched and developed this product for the sole objective 
+  to allow people to overcome their fears and memories.\\
+  
+  \tm is internally and actively tested to treat:
+  
+  \begin{itemize}
+    \setlength\itemsep{.25em}
+    
+    \item Acute Stress Disorders (ASR),
+    \item Agoraphobia, 
+    \item Claustrophobia,
+    \item Obsessive-Compulsive Disorders (OCD),
+    \item self-harm,
+    \item pyromania, 
+    \item social phobias,
+    \item some forms of schizoaffective disorders.
+  \end{itemize}
+  
+  \section{Before Using \tm}
+  Before anything, the risks must be weighed against the good the pill will do to one's body.
+  Taking this pill is a decision only for you and your doctor to make.
+  
+  To lower the risk of memory loss, 
+  you only should take this pill when you have had a full night of sleep (at least 6 or 7 hours).
+  
+  Always put at least a 5 hour gap between each \tm usage.
+  
+  \subsection{Allergies}
+    Tell your doctor if you encounter any unusual allergic reaction during 
+    or after the pill' effects.
+    
+  \subsection{Pediatric and Breast Feeding}
+    Studies on \tm were only done on adult psychiatric patients. 
+    Thus, no information or studies are available on the usage risks for children or infants.
+    
+  \subsection{Storage}
+    The pills must be kept in a closed container at room temperature 
+    away from children, liquids, moisture, freezing and direct light.
+    
+  \section{Precautions While Using \tm}
+    Make sure you are in a safe environment, where you cannot easily be hurt.
+    We also recommend that you stay seated on a chair or in bed 
+    when waiting for the pill to become active.
+    
+    \tm may cause some people to feel drowsy, dizzy, lightheaded, clumsy or unsteady.
+    Make sure, when getting up, to carefully take your time 
+    and do not hesitate to abort if you are feeling heavy or at risk.
+
+    As the pill is flagged as an unknown entity, thus, as a normal reaction, 
+    will be slowly eliminated. The the effects will slowly withdraw. 
+    From our experiments, the pills are lasting at least an hour and up to two hours.
+    
+  \section{\tm Side Effects}
+    Along with its desired effects, \tm can come with some unwanted effects.
+    If anything uncommon occurs, make sure to check with your doctor as soon as possible.\\
+    
+    \noindent Most common:
+    \begin{itemize}
+      \item Confusion;
+      \item Clumsiness or unsteadiness;
+      \item Difficulty with coordination;
+      \item Mood or mental changes.
+    \end{itemize}
+    
+    \noindent Less common:
+    \begin{itemize}
+      \item Severe drowsiness;
+      \item Shortness of breath and difficult or labored breathing;
+      \item Tightness in the chess;
+      \item Memory loss.
+    \end{itemize}
+    
+    \noindent Rare:
+    \begin{itemize}
+      \item Loss of consciousness;
+      \item Increased appetite;
+      \item Weight loss;
+      \item Vomiting.
+    \end{itemize}
+  
+\end{document}
