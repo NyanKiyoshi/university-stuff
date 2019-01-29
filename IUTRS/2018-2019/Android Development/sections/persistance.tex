@@ -1,0 +1,25 @@
+\section{Persistance des données}
+\begin{itemize}
+    \item Persistance des données liées à une activité, tout contenu d'un widget possédant un identifiant persiste durant toute la durée de l'application ;
+    \item On peut avoir un fichier associé à une application, c'est une \textbf{préférence partagée} utilisant un mécanisme de clé/ valeur (classe \code{Bundle}) ;
+    \item Base de données native \code{SQLite}.
+\end{itemize}
+
+\subsection{Préférences partagées}
+La classe \code{SharedPreferences} permet de gérer des paires clé/ valeurs associées à un activité ;
+
+\subsubsection{Les différents modes}
+\begin{itemize}
+    \item \code{MODE\_PRIVATE} restreint l'accée au fichier créé à l'application ;
+    \item \code{MODE\_WORLD\_READABLE} et \code{MODE\_WORLD\_WRITABLE} permettent d'autoriser toutes les applications à lire/ écrire le fichier.
+\end{itemize}
+
+\subsubsection{Activité d'édition des préférences}
+L'activité \code{PreferenceActivity} permet la création d'une interface de modification de préférences.
+
+Elle utilise les attributs suivants :
+\begin{itemize}
+    \item \code{android:title}, le nom de la préférence ;
+    \item \code{android:summary}, la description de la préférence ;
+    \item \code{android:key}, la clé pour stockage de la préférence.
+\end{itemize}

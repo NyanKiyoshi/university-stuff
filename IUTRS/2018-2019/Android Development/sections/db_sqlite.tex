@@ -1,0 +1,116 @@
+\section{Les bases de données SQLite sur Android}
+\subsection{Les types}
+
+\begin{itemize}
+    \item \code{NULL} ;
+    \item \code{INTEGER} (1, 2, 4, 6 ou 8 octets) ;
+    \item \code{REAL} (virgule flottante, 8 octets) ;
+    \item \code{TEXT} ;
+    \item \code{BLOB} (Binary Large OBject).
+\end{itemize}
+
+\noindent\\ \textbf{Attention ! Les clés étrangères ne sont pas supportées par ce SGBD.}
+
+\subsection{Création d'une base de données}
+Pour créer une base de données, on utilise \code{SQLiteOpenHelper} et on surcharge la méthode \code{onCreate()}.
+
+\begin{lstlisting}[language=java]
+public class MyDataBase extends SQLiteOpenHelper {
+    // En-têtes obligatoires
+    private static final String DATABASE_NAME = "myDatabase.db";
+    private static final int DATABASE_VERSION = 2;  // => onUpgrade() si la base n'est à jour.
+    
+    // Table Names
+    private static final String TABLE1_NAME = "myTable1";
+    private static final String TABLE1_NAME = "myTable2";
+
+    // Column names
+    // ...
+
+    private static final String TABLE1_CREATE =
+        "CREATE TABLE " + TABLE1_NAME + " (" +
+        KEY_ID + "INTEGER PRIMARY KEY,"+  ...);
+        
+    // ...
+    
+    MyDataBase(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+    
+    // Appelé si la base n'existe pas
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(MYBASE_TABLE_CREATE);
+    }
+}
+
+MyDataBase mDbHelper = new MyDataBase(getContext());
+\end{lstlisting}
+
+\subsection{Requêtes sur une base}
+\subsubsection{Insertions}
+\begin{lstlisting}[language=java]
+// Gets the data repository in write mode
+SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+// Create a new map of values, where column names are the keys
+ContentValues values = new ContentValues();
+values.put(FeedEntry.COLUMN_NAME_ENTRY_ID, id);
+values.put(FeedEntry.COLUMN_NAME_TITLE, title);
+values.put(FeedEntry.COLUMN_NAME_CONTENT, content);
+
+// Insert the new row, returning the primary key value of the new row
+long newRowId;
+newRowId = db.insert(FeedEntry.TABLE_NAME, FeedEntry.COLUMN_NAME_NULLABLE, values);
+\end{lstlisting}
+
+\subsubsection{Requêtes}
+\begin{lstlisting}[language=java]
+SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+// Define a projection that specifies which columns from the database
+// you will actually use after this query.
+String[] projection = {
+    FeedEntry._ID,
+    FeedEntry.COLUMN_NAME_TITLE,
+    FeedEntry.COLUMN_NAME_UPDATED,
+    // ...
+};
+
+// How you want the results sorted in the resulting Cursor
+String sortOrder = FeedEntry.COLUMN_NAME_UPDATED + " DESC";
+Cursor cursor = db.query(
+    // The table to query
+    FeedEntry.TABLE_NAME,
+
+    // The columns to return
+    projection,
+
+    // The columns for the WHERE clause
+    selection,
+
+    // The values for the WHERE clause
+    selectionArgs,
+
+    // don't group the rows
+    null,
+
+    // don't filter by row groups
+    null,
+
+    // The sort order
+    sortOrder
+);
+
+// Manipulate the cursor
+cursor.moveToFirst();
+
+long itemId = cursor.getLong(
+    cursor.getColumnIndexOrThrow(FeedEntry._ID));
+\end{lstlisting}
+
+\noindent\\ Note : on peut aussi utiliser \code{db.rawQuery(s)} pour
+faire une requête en pure SQL (attention aux injections).
+
+\subsubsection{Mises à jour et suppressions}
+Même chose que \code{db.insert(...)} mais avec les méthodes \code{db.update(...)} et \code{db.delete(...)}.

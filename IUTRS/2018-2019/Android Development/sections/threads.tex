@@ -1,0 +1,99 @@
+\section{Les threads sur Android}
+On ne bloque jamais l'interface graphique. Toute tâche longue doit s'exécuter dans un thread à part. Les entrées/sorties doivent être faits dans un thread afin d'améliorer la réactivité de l'application.
+
+Il y a donc deux règles :
+\begin{enumerate}
+    \item Le thread principal (UI thread) ne doit pas être bloqué ;
+    \item Il est interdit d’agir sur l’interface utilisateur \textbf{en dehors} du thread principal.
+\end{enumerate}
+
+\subsection{Gestion des threads sous Android}
+L'API Android fournit trois méthodes pour cela :
+\begin{itemize}
+    \item \code{Activity.runOnUiThread(Runnable)} ;
+    \item \code{View.post(Runnable)} ;
+    \item \code{View.postDelayed(Runnable, long)}, permet de retarder une tâche.
+\end{itemize}
+
+De plus, elle fournit les classes pour des tâches asynchrones : \code{Handler} et \code{ASyncTask <U, V, W>}.
+
+En plus des classes Java (\code{Thread}, \code{Executor}, \code{TimerTask}, ...).
+
+\noindent \\ \emph{Note : s’il est nécessaire d’agir sur l’interface graphique à partir d’un autre thread, il faut le déléguer au thread principal pour exécution ultérieure.}
+
+\subsection{Création de threads}
+On peut créer une classe dérivée de \code{Thread} ou implanter l'interface \code{Runnable}.
+\begin{lstlisting}[language=java]
+public interface Runnable {
+    void run();
+}
+\end{lstlisting}
+
+On peut soit étendre \code{Thread} dans l'implantation de \code{Runnable}, ou alors, utiliser l'implantation en tant que classe anonyme en la passant à \code{Thread}.
+
+\begin{lstlisting}[language=java]
+class myThread extends Thread {
+    public void run() {
+        // Code qui sera execute par le thread
+    }
+}
+
+myThread t = new myThread();
+
+t.join();
+\end{lstlisting}
+
+\begin{lstlisting}[language=java]
+class myTask implement Runnable {
+    public void run() {
+        // Code qui sera execute par le thread
+    }
+}
+
+myTask task = new myTask();
+Thread t = new Thread(task);
+
+t.join();
+\end{lstlisting}
+
+\begin{lstlisting}[language=java]
+Thread t = new Thread(new Runnable() {
+    public void run() {
+        // Code qui sera execute par le thread
+    }
+});
+
+t.join();
+\end{lstlisting}
+
+\subsubsection{Modifier l'UI}
+Pour modifier une vue, on va donc procéder de cette manière :
+\begin{lstlisting}[language=java]
+Handler h = new Handler();
+h.postDelayed(new Runnable() {  // postDelayed ou post
+    public void run() {
+        bt.setText("");
+    }
+},1000);
+\end{lstlisting}
+
+
+\subsubsection{Tâche périodique}
+\begin{lstlisting}[language=java]
+Timer t = new Timer();
+final Handler h = new Handler();
+
+TimerTask task = new TimerTask() {
+    int i = 0;
+    public void run() {
+        h.post(new Runnable() {
+            public void run() {
+                bt.setText(i.toString());
+            }
+        });
+        i++;
+    }
+};
+
+t.schedule(task, 0, 1000);
+\end{lstlisting}
