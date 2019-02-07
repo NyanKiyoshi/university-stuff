@@ -1,0 +1,112 @@
+\section{La gestion de tâches web asynchrones avec la librairie Volley}
+La librairie Android \emph{Volley} permet de faire des requêtes HTTP asynchrones de manière très largement simplifiée et bien plus performante.
+
+\subsection{Installation}
+Pour installer la librairie Volley, il suffit d'ajouter la dépendance \code{com.android.volley:volley:1.1.1} dans les dépendances du fichier \code{build.gradle} de votre projet ou application (\code{app/build.gradle} par exemple).
+
+\begin{lstlisting}
+dependencies {
+    ...
+    implementation 'com.android.volley:volley:1.1.1'
+}
+\end{lstlisting}
+
+\subsection{Exemple de requête JSON}
+\subsubsection{Ajout de l'autorisation INTERNET dans le manifest}
+Afin de connecter votre application à internet, il faut définir la permission dans le manifest. Pour cela, dans \code{AndroidManifest.xml} ajoutez :
+
+\begin{lstlisting}[language=xml]
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.example.tp3weather">
+    <!-- ... -->
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <!-- ... -->
+\end{lstlisting}
+
+\subsubsection{Définition de la queue associée à l'activité courante}
+Tout d'abord il faut définir un objet qui contiendra la queue des requêtes HTTP d'une activité ou d'un contexte donné. Pour cela, on ajoutera une propriété de type \code{RequestQueue} en important \code{com.android.volley.RequestQueue} dans notre activité. Puis, on la peuplera en faisant cet appel : \code{Volley.newRequestQueue(this);} lors de la création de l'activité.
+
+\subsubsection{Lancement d'une requête HTTP}
+Maintenant qu'on a défini une queue, on peut demander à \emph{Volley} de faire une requête qui attend en réponse un objet JSON (\code{JSONObject} en Java). Pour cela, on fera l'appel suivant : \code{notreQueue.add(new JsonObjectRequest(url, null, listener, errorListener));} (qui est de \code{com.android.volley.toolbox}).
+
+\begin{description}
+    \item[\code{listener}] est une fonction qui prend en paramètre un objet de type \code{JSONObject}.
+    \item[\code{errorListener}] est une fonction \textbf{facultative} qui prend un objet \code{VolleyError}. Cet objet contient une propriété \code{networkResponse} qui est \code{null} si la requête a échouée, autrement, elle contient la réponse HTTP avec les propriétés suivantes :
+        \begin{description}
+            \item[\code{statusCode: int}] Le code HTTP.
+            \item[\code{notModified: bool}] Vrai si la réponse est une HTTP 304 (Content Not Modified).
+            \item[\code{headers: Map<String,String>}] Les en-têtes de la réponses HTTP.
+            \item[\code{data: byte[]}] La réponse brute du serveur.
+        \end{description}
+\end{description}
+
+\subsubsection{Les différents types de requêtes}
+La \emph{toolbox} de la librarie Volley définie \href{https://afzaln.com/volley/com/android/volley/toolbox/package-tree.html}{plusieurs méthodes} en plus que celle de l'exemple précédent (JSON). Elles sont les suivantes :
+
+\begin{description}
+    \item[\code{StringRequest}] Une simple requête HTTP qui retourne le corps en une chaîne (\code{String}).
+    \item[\code{JsonRequest}] Attend et renvoie un \code{JSONObject}.
+    \item[\code{ImageRequest}] Attend et renvoie une image sous forme un objet \code{android.graphics.Bitmap}.
+\end{description}
+
+\subsubsection{Exemple complet}
+\begin{lstlisting}[language=java]
+String url = "http://my-json-feed";
+
+JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+        (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+    @Override
+    public void onResponse(JSONObject response) {
+        mTextView.setText("Response: " + response.toString());
+    }
+}, new Response.ErrorListener() {
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        // TODO: Handle error
+
+    }
+});
+
+// Access the RequestQueue through your singleton class.
+MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+\end{lstlisting}
+
+\subsection{Création de requêtes avec type personnalisé}
+On peut facilement définir des requêtes personnalisées, comme par exemple pour un Bitmap :
+\begin{lstlisting}[language=java]
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.HttpHeaderParser;
+
+public class BitmapRequest extends Request<Bitmap> {
+    private final Response.Listener<Bitmap> listener;
+
+    public BitmapRequest(
+            String url,
+            Response.Listener<Bitmap> listener,
+            Response.ErrorListener errorListener) {
+
+        super(Method.GET, url, errorListener);
+        this.listener = listener;
+    }
+
+    @Override
+    protected Response<Bitmap> parseNetworkResponse(NetworkResponse response) {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(response.data, 0, response.data.length);
+        return Response.success(
+            bitmap, HttpHeaderParser.parseCacheHeaders(response));
+    }
+
+    @Override
+    protected void deliverResponse(Bitmap response) {
+        listener.onResponse(response);
+    }
+}
+\end{lstlisting}
