@@ -1,0 +1,9 @@
+# Ignore hidden folders
+.*/
+
+# Ignore compiled files
+main
+*.out
+*.exe
+*.so
+
