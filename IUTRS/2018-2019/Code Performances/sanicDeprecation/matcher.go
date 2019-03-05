@@ -9,7 +9,7 @@ import (
 type patternsMapping map[string][]string
 
 // patternsMappingMutex is the patterns matcher mutex.
-var patternsMappingMutex sync.RWMutex
+var rxmutex sync.RWMutex
 
 // PATTERNS defines the pattern mapping against matched files.
 var PATTERNS = patternsMapping{
@@ -26,16 +26,6 @@ var PATTERNS = patternsMapping{
 	"sockaddr_in":      {},
 }
 
-// Unlock locks the patterns mutex.
-func (*patternsMapping) Lock() {
-	patternsMappingMutex.Lock()
-}
-
-// Unlock unlocks the patterns mutex.
-func (*patternsMapping) Unlock() {
-	patternsMappingMutex.Unlock()
-}
-
 // MatchFile matches a file's content against flagged patterns.
 // For now it's only doing a dumb multy-pass processing. Meaning,
 // it evaluates the file with each pattern. Where, instead, we would
@@ -50,14 +40,12 @@ func MatchFile(loadedFile *LoadedFile) {
 	s := string(loadedFile.content)
 
 	// FIXME: put correct concurrency
-	PATTERNS.Lock()
-	defer PATTERNS.Unlock()
+	rxmutex.Lock()
+	defer rxmutex.Unlock()
 
 	for pattern, pathlist := range PATTERNS {
 		if strings.Contains(s, pattern) {
 			PATTERNS[pattern] = append(pathlist, loadedFile.path)
 		}
 	}
-
-	return
 }

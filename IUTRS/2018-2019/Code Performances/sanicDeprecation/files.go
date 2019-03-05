@@ -1,6 +1,7 @@
 package sanicDeprecation
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -19,15 +20,16 @@ var AllowedSuffixes = [...]string{".c", ".h", ".cpp"}
 
 // ListFilesRecursive lists to a channel every path
 // contained in a starting folder.
-func ListFilesRecursive(sourcePath string, output chan string, done chan bool) {
+func ListFilesRecursive(sourcePath string, output chan *string) {
 	err := filepath.Walk(sourcePath, func(path string, f os.FileInfo, err error) error {
 		if f.IsDir() {
 			return nil
 		}
 
 		for _, suffix := range AllowedSuffixes {
+			fmt.Printf("%s\n", path)
 			if strings.HasSuffix(path, suffix) {
-				output <- path
+				output <- &path
 				break
 			}
 		}
@@ -35,10 +37,8 @@ func ListFilesRecursive(sourcePath string, output chan string, done chan bool) {
 	})
 
 	if err != nil {
-		log.Fatal(err)
+		log.Print("Failed to read the directory: ", err)
 	}
-
-	done <- true
 }
 
 // LoadFileIntoMemory loads a given file path into a LoadedFile object, in memory.
@@ -47,7 +47,7 @@ func LoadFileIntoMemory(path string, output chan *LoadedFile) {
 	data, err := ioutil.ReadFile(path)
 
 	if err != nil {
-		log.Fatal(err)
+		log.Printf("Failed to read '%s': %s", path, err)
 	}
 
 	output <- &LoadedFile{path: path, content: data}
