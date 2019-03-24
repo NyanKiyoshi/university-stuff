@@ -1,0 +1,160 @@
+\input{_definitions.tex}
+
+\begin{document}
+
+\input{_title.tex}
+
+\begin{description}
+    \item[Pourquoi ?]
+    C'est un besoin, gain de temps.
+    
+    \item[Déroulement du module]
+    Deux premières semaines : compréhension et fouille de données.
+    Dernière séance : contrôle des connaissances du cours et du mini projet.
+\end{description}
+
+
+\section{Qu'est-ce que la fouille de données ?}
+On veut sortir quelque chose de nos données via des statistiques. Apprentissage automatique via intelligence artificielle (deep learning), beaucoup de données et beaucoup de calculs.
+
+Aucune méthode d'apprentissage ne peut être la meilleure. Chacune a ses avantages.
+
+Durant les années 90, des logiciels ont été développés pour tirer des connaissances des bases de données. La puissance de calcul des machines qui était déjà très bonne.
+
+Data mining, les données sont des matériaux brutes, c'est de la terre, de la roche, il faut extraire, ça ne pousse pas tout seul.
+
+Mais on découvre que ces données ne sont pas terribles, mais ce qui nous intéresse c'est de faire des formes de prédiction via l'apprentissage de règles qui conduit à un modèle qui s'applique à tout les clients. Le deep learning peut donc être de trop.
+
+Le problème est qu'il faut préparer les données. Car elles ne sont pas forcément conçus pour la fouille de données. Mais il faut aussi nettoyer la base de données, qui est polluée de bêtises et de fausse données (le stagiaire doit s'occuper de ça). C'est 80\% du temps de travail. Les 20\% restants vérifient que le modèle généré est correcte. La génération du modèle est quasi instantané.
+
+On a rarement trop de données.
+
+\say{Data scientist}, c'est la science des données.
+
+\subsection{Découvrir des motifs}
+Un exemple est \say{l'analyse du panier de la ménagère}, on analyse le cadis des gens, via le ticket de caisse des produits achetés en même temps. On regarde les données et on les généralises.
+
+L'objectif du patron du super marché est d'augmenter le pouvoir d'achat. Une solution est d'augmenter le salaires de clients, mais le patron du super marché ne peut pas. Il doit donc trouver d'autres solutions.
+
+Une chaîne de magasin Américaine a découvert que lorsqu'une personne achète des couches pour bébé, elle achète des bières. C'est quelque chose de nouveau, qu'on n'avait connaissance. C'est à la chaîne de prendre une initiative, de quoi faire de cette information.
+
+Bien entendu, on se fiche de savoir qui a acheté les couches pour bébé. On veut juste tirer des règles.
+
+\subsection{Définition de l'apprentissage automatique}
+On dit qu'un programme informatique apprend, à partir d'une expérience $E$, par rapport à une classe de tâches $T$ et une mesure de performance $P$, si sa performance sur des tâches de $T$, mesurée par $P$, s'améliore avec l'expérience $E$.
+
+\subsection{Exemple introductif}
+On veut savoir quand est-ce qu'il joue à partir des données ci-dessous, donc, en tirant des règles.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|}
+        \hline
+        Jour & Ciel & Température & Humidité & Vent & Jouer \\ \hline
+        J1  & Soleil & Chaud & Élevée & Faible & Non  \\ \hline
+        J2  & Soleil & Chaud & Élevée & Fort & Non \\ \hline 
+        J3  & Couvert & Chaud & Élevée & Faible & Oui \\ \hline
+        ... & ... & ... & ... & ... & ... \\ \hline
+    \end{tabular}
+    \caption{Exemple de données à fouiller}
+    \label{tab:my_label}
+\end{table}
+
+\subsection{Exemples d'applications réelles}
+\begin{itemize}
+    \item Aide à la décision (attribution de prêts bancaires, cartes de crédit, etc.)
+    \item Analyse d'images (détection de nappes de pétrole, structures astronomiques, médical, etc.)
+    \item Apprendre à reconnaître des mots parlés
+    \item Apprendre à conduire un véhicule autonome
+    \item Apprendre à jouer au backgammon à un niveau de champion
+    \item Commerce et marketing (panier de la ménagère, ticket de caisse, carte de fidélité, mailing, etc.)
+\end{itemize}
+
+La carte de fidélité est pratique car à la place d'avoir un seul ticket, on a un ensemble de ticket et on incite le client à revenir. On se fiche du nom, on veut juste pouvoir associer les tickets à une carte.
+
+On veut faire plaisir au client, c'est notre rôle.
+
+On collabore au big brother.
+
+\section{Différents types d'apprentissages}
+
+\subsection{Apprentissage supervisé (ce n'est pas interactif)}
+On a une classe, un attribut de sortie. Il y a une entrée, une sortie.
+
+\begin{itemize}
+    \item La majorité des exemples précédents ;
+    \item On a une classe ;
+    \item Exemples étiquetés par un professeur (par un oracle) ;
+    \item Classe numérique (régression) ou catégorielle (classification).
+\end{itemize}
+
+\subsection{Apprentissage non-supervisé}
+C'est le cas où on n'a pas de classe prédéfinie.
+
+Deux méthodes :
+\begin{description}
+    \item[Découverte de règles] on veut découvrir des règles, peu importe leur conclusion.
+    \item[Clustering,] on veut pouvoir trier les données par paquet de similarité (qu'on a définie). Permet donc une représentation des données. On crée donc un ensemble de classes à analyser.
+\end{description}
+
+\section{La fouille de données}
+\subsection{Apprentissage de concepts}
+\begin{description}
+    \item[Fonction booléenne,] Par exemple il pleut, il pleut pas.
+    \item[Représentation des hypothèses : ] une règle. Si conjonction d'attributs-valeurs, alors appartient au concept. 
+    \item[Espace des hypothèses,] combien de règles on peut avoir. $ 4 \times 4 \times 3 \times 3 = 144 \text{~conjonctions} $.
+    \item[Espace des instances,] combien de représentations possibles. $ 3 \times 3 \times 2 \times 2 = 36 \text{~instances} $.
+\end{description}
+
+\subsection{Le principe de l'apprentissage inductif}
+Toute hypothèse qui est une bonne approximation de la fonction cible sur l'ensemble d'apprentissage est aussi une bonne approximation de la fonction cible sur les instances non observées.
+
+\subsection{Parcours de l'espace des hypothèses}
+\begin{itemize}
+    \item On énumère et on garde ce qui est positif.
+    \item Relation d'ordre.
+    \item Recherche de toutes les hypothèses cohérentes. 
+\end{itemize}
+
+\subsection{Problèmes}
+Il reste plusieurs hypothèses cohérentes avec l'ensemble d'apprentissage. Il y a pas assez d'exemple pour isoler la "bonne" hypothèse. Critère supplémentaire pour choisir la "bonne".
+
+Il n'y a plus d'hypothèse cohérente avec l'ensemble d'apprentissage. Soit le langage n'est pas assez expressif, soit les exemples sont bruités (ex.: un jour où il joue pas malgré qu'il fait moche).
+
+\subsection{Le bruit en apprentissage}
+\begin{itemize}
+    \item Origines diverses (physiques, expérimentales, humaines, etc.) ;
+    \item Mauvaise classe associée à la description.
+\end{itemize}
+
+\subsection{Pas d'apprentissage sans biais}
+\begin{itemize}
+    \item $ 2^{36} = 6.9 \times 10^{10} $ (69MM) concepts possibles.
+    \item En fait, $ 2^{36 - 14} = 4096 $ concepts cohérents avec les exemples.
+    \item Il est impossible de choisir sans biais supplémentaire.
+    \item Biais de langage.
+    \item Biais de recherche.
+    \item Biais pour éviter le sur-apprentissage.
+\end{itemize}
+
+\subsection{La méthodologie de la fouille de données}
+\begin{enumerate}
+    \item Identifier le problème à résoudre.
+    \item Préparer les données d'entrée.
+    \item Explorer des modèles multiples.
+    \item Utiliser le modèle sur le réel.
+    \item Suivre le modèle et l'améliorer.
+\end{enumerate}
+
+\subsection{Identifier le problème à résoudre}
+\subsubsection{Concept}
+Reformuler le problème en un des types connus.
+
+\subsubsection{Entrées}
+\begin{itemize}
+    \item Attributs........
+\end{itemize}
+
+\newpage
+\input{sections/olap.tex}
+
+\end{document}

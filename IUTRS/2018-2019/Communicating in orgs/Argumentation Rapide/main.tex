@@ -1,0 +1,192 @@
+% !TeX spellcheck = fr_FR
+\documentclass[final, a4paper, 11pt]{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{fullpage}
+\usepackage{float}
+\usepackage{mdframed}
+\usepackage[margin=2cm]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage[
+    left = «~,% 
+    right = ~»]{dirtytalk}
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{
+    escapechar=\%,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showlines=true,
+    showstringspaces=false,
+    emptylines=2,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    numberstyle=\small, 
+    numbersep=8pt,
+    numbers=left,
+    frame=single,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4,
+    language=
+}
+
+
+%%% Commands
+\newcommand{\code}[1]{
+    \boxed{\texttt{#1}}
+}
+
+\begin{document}
+
+\noindent
+\large\textbf{C41 - L'argumentation rapide} \hfill \textbf{KOCAK Mikail} \\
+\normalsize M. Wressler \hfill 8 février 2019 \\[1pt]
+
+\tableofcontents
+
+\section{Introduction}
+Une argumentation d'au moins de deux ou trois minutes. Une minute veut dire qu'on manque d'arguments.
+
+On est dans une situation de contrainte, on a trois minutes, la personne n'a pas le temps de nous écouter, on n'a pas besoin de rendez-vous, il faut retourner ce temps en un gain, ce qui permet d'obtenir des choses qui ne seraient obtenables avec un temps plus grand.
+
+Il ne faut surtout pas faire cette demande rapide par écrit. La personne peut lire comme elle veut, voir ignorer ou ne pas répondre. De plus, le message peut être relu, alors qu'une argumentation orale, la personne n'a pas beaucoup de temps pour réfléchir. Il est très difficile d'obtenir une demande par écrit, surtout par messagerie instantanée.
+
+On veut raccourcir et donc trier pour faire une argumentation rapide et brève. Si c'est trop court, il faut trouver d'autres choses.
+
+Il faut convaincre, montrer pourquoi la situation est urgente et nécessite l'aide la personne.
+
+Avant de démarrer il faut faire une clarification dans sa tête, pour cela il y a trois possibilités, soit on est là pour :
+\begin{enumerate}
+	\item Demander (avoir une réponse) ;
+	\item Obtenir quelque chose (recevoir un stagiaire, ...);
+	\item Dire quelque chose (transmettre une consigne, ...).
+\end{enumerate}
+
+\section{Les difficultés posées par l'obligation d'être bref}
+Plusieurs types de mauvaises réactions peuvent se montrer durant cette difficulté :
+
+\begin{itemize}
+	\item Une des premières réactions serait de montrer le contour du sujet, sans trop entrer les explications. Ce qui n'est pas une bonne réaction, il ne faut pas juste rester autour, il faut que la personne sache quoi faire du sujet et comment le traiter.
+	
+	\item Souvent les gens deviennent agressifs ou s'énerve avec la pression.
+	
+	\item On commence à une vitesse normale et on finit on se précipitant, en voyant qu'on a plus beaucoup de temps et plein de choses restantes à dire. Alors que la fin est ce qui compte le plus, c'est ce que la personne retiendra le plus. Mieux vaut commencer vite et finir normalement.
+\end{itemize}
+
+Il ne faut pas se dire qu'on n'a pas assez de temps, et il faut viser moins de temps que le temps donné. Il faut commencer par se demander quoi enlever pour faire bref.
+
+\subsection{Exemples de comportements}
+\begin{tabular}{|p{4cm}|p{6cm}|p{6cm}|}
+	\hline Comportement & Avantages & Inconvénients \\\hline
+	
+	Vous avez tendance à brûler les étapes. & Aller à l'essentiel; éliminer le superflu; ne pas
+laisser l'interlocuteur dans l'incertitude ; privilégier l'action. & Oublier un point ; Être trop direct (brutal) ; Être incompréhensible. 
+\\\hline
+
+Vous pensez qu'on ne peut pas changer le point de vue de quelqu'un.
+& Respect de l'interlocuteur ; modestie ; approche nuancée et prudente de la demande. 
+
+& Manque de conviction condamnant d'avance la demande à l'échec ; par effet miroir, impression que vous ne voudriez pas vous-même changer d'avis : fermeture d'esprit. 
+\\\hline
+
+Vous attendez le moment opportun pour intervenir. 
+& Respect de l'interlocuteur ; efficacité de la demande; impression de réflexion, de sens stratégique.
+& Il est difficile de savoir quel est le moment le plus opportun avant la fin, donc avant qu'il ne soit trop tard; manque de spontanéité; aspect trop calculateur.
+\\\hline
+
+Vous saisissez la première occasion pour prendre la parole.
+& Vous êtes sůr de parler spontanéité; impression d'enthousiasme; prise de risque. 
+& Manque de préparation, de réflexion, de stratégie; impression d'égocentrisme, de bavardage.
+\\\hline
+
+Vous aimez insister. 
+& Affirmation de son point de vue, de sa conviction.
+& Caractère intrusif, voire irrespectueux, de la parole insistance répétitive pouvant masquer un manque d'arguments.
+\\\hline
+
+Vous préparez le terrain, prenez la température, faites des sondages.
+& Caractère stratégique, prudent ; réflexion solide respect de l'interlocuteur, sens de l'anticipation. & Peut repousser excessivement la prise de parole ; peut déformer par avance l'intention initiale, la demande ou le message.
+\\\hline
+
+Quand vous revenez à la charge, vous vous y prenez toujours différemment.
+& Variété des arguments, multiplication des chances de succès calculateur, manipulateur.
+& Risque de brouiller le message initial; aspect calculateur, manipulateur.
+\\\hline
+
+Vous aimez bien agir progressivement. 
+& Efficacité de la demande (proportionnalité) ; respect de l'interlocuteur facilité à être compris.
+& Longueur, lenteur de la préparation risque de ne jamais arriver au stade initialement prévu ; aspect parfois trop calculé.
+\\\hline
+
+Vous pensez qu'il faut oser être provocateur.
+& Prise de risques ; attention et réaction de interlocuteur permet d'éviter les clichés.
+& Peut masquer un manque de fond ; peut être mal perçu (repli de l'interlocuteur).
+\\\hline
+
+Vous aimez déstabiliser votre interlocuteur.
+& Suscite l'attention et la disponibilité de l'interlocuteur.
+& Peut être mal perçu (repli) ; peut brouiller l'écoute ; peut empêcher la prise de décision immédiate.
+\\\hline
+\end{tabular}
+
+\section{La méthode pour préparer une argumentation brève (brouillon)}
+Ce n'est pas pareil que préparer un exposé. On la préparera en plusieurs étapes.
+
+\subsection{Phase de pensée libre (irrationnelle, imagination)}
+Se laisser le temps pour préparer l'argumentation, la laisser travailler et noter en vrac. La feuille de brouillon doit ressembler à rien, être en désordre, rien n'est numéroté. Cela prendra 5 à 10 minutes.
+
+C'est une pensée active, c'est une réflexion personnelle, on essaye de comprendre, il faut se poser des questions :
+\begin{itemize}
+	\item Qui, quoi, où et quand ?
+	\item Comment et pourquoi ?
+	\item Combien ?
+	\item Au nom de quoi ?
+\end{itemize}
+
+Bien garder la feuille de brouillon, et ne rien enlever pour l'instant.
+
+\subsection{Vers une pensée plus organisée, aboutir vers un plan}
+La deuxième phase est de se diriger vers un plan, pour cela on va :
+
+\begin{enumerate}
+	\item Regrouper les idées, par exemple avec des flèches ou des codes de couleurs.
+	\item Reformuler les idées, il faut que la feuille soit compréhensible pour une autre personne, qu'elle ait du sens.
+	\item S'auto-critiquer, se demander si certaines idées ne sont pas fausses, si oui, les éliminer.
+\end{enumerate}
+
+\subsection{Faire un plan}
+\begin{enumerate}
+	\item On va hiérarchiser les idées, se demander dans quel ordre on va mettre chaque idée.
+	\item Limiter le nombre de parties, on avoir que trois ou quatre.
+	\item Essayer de faire deux plans différents, un des plans va apparaître comme étant le meilleur.
+	\item Il va falloir reformuler les titres pour qu'ils aillent bien ensemble.
+\end{enumerate}
+
+\section{La formulation finale, ce qu'on va dire à l'oral}
+Il faut se lancer oralement avec notre plan et bien entendu. Ce n'est pas un exposé, on y va donc sans support, et il faut le connaître par cœur. Puis savoir comment enchaîner les idées du plan, si les arguments sont mal enchaînés, on aura une impression d'une argumentation décousue et va donc remettre en question.
+
+L'idéal serait de s'enregistrer et de se réécouter, ce qui permet d'enlever les défauts et permettra de ne plus les faire.
+
+Une autre méthode serait de tout rédiger. Pour parler cinq minutes, il ne faut pas écrire plus de 500 mots. Il faut bien entendu pas l'apprendre par cœur, autrement on récitera. Il faut le répéter à la place.
+
+Il faut trouver une formule clé, une sorte de refrain qu'on utilise comme accroche qu'on va répéter trois ou quatre fois, y compris lors de la conclusion. Cela permet d'imposer une formule, on va marteler une formule dans l'esprit d'une personne. Cela aide aussi pour la mémorisation, elle peut servir pour se reprendre en cas de trou de mémoire.
+
+\section{Sujets traités en TP}
+\begin{itemize}
+	\item Expliquer à une personne pourquoi il ne faut pas avoir peur des progrès de l'intelligence artificielle.
+	\item Choisir un jeu qu'on connaît bien en expliquant les règles pour donner envie à la personne d'y jouer.
+\end{itemize}
+
+\end{document}

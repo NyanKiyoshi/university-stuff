@@ -1,0 +1,99 @@
+% !TeX spellcheck = fr_FR
+\documentclass[final, a4paper, 11pt]{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{fullpage}
+\usepackage{float}
+\usepackage{mdframed}
+\usepackage[margin=3cm,top=2cm,bottom=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage[
+    left = «~,% 
+    right = ~»]{dirtytalk}
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{
+    escapechar=\%,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showlines=true,
+    showstringspaces=false,
+    emptylines=2,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    numberstyle=\small, 
+    numbersep=8pt,
+    numbers=left,
+    frame=single,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+}
+
+\lhead{15 Fév. 2019}
+\chead{KOCAK Mikail}
+\pagestyle{fancy}
+\rfoot{Source : olats.org}
+
+\renewcommand{\baselinestretch}{1.15}
+
+%%% Commands
+\newcommand{\code}[1]{
+    \boxed{\texttt{#1}}
+}
+
+\begin{document}
+
+~\\[1pt]
+
+{
+
+\centering
+
+\textbf{Comment les propriétés du code informatique se manifestent-elles en littérature numérique ?  \\[.3cm]}
+
+}
+
+\noindent \textbf{Chapitre I\\[2mm]}
+\indent Certains auteurs, notamment en Allemagne et aux États-Unis, n'accordent aucune importance aux processus de transformation et considèrent que seul le codage de l'information, quel qu'il soit, est caractéristique d'une véritable littérature. Pour eux, à la suite de Florian Cramer, le texte se limite à \say{un ensemble de signifiants alphabétiques}.
+
+Notons que le code présent dans les textes à l'écran n'est pas exécutable au sein de l'œuvre. Il est en effet rarement complet et ne saurait, en général, être exécuté par une machine. Mais même lorsqu'il l'est, l'œuvre ne prévoit pas de l'exécuter : il est seulement écrit.
+
+Il n'est pourtant pas nécessaire que le code perde son caractère exécutable pour être travaillé de façon poétique. La conception du texte alors en action n'est pas réduite à celle d'un ensemble de caractères alphabétiques, il s'agit bien d'un ensemble de signes qui fonctionne comme tel pour le lecteur mais qui fonctionne également comme ensemble d'instructions pour la machine. Le monde technologique rejoint ici le monde symbolique humain. Le code numérique n'y joue pas qu'un rôle métaphorique mais montre sa véritable nature de \say{signe performatif}, c'est-à-dire d'énoncé qui est pleinement un signe symbolique appartenant à un langage humain et tout à la fois une instruction exécutable.
+
+Les codes informatiques utilisés dans ces œuvres ne sont pas des codes de bas niveau, c'est-à-dire proches de la machine, écrits en ASCII ou en binaire, mais les instructions d'un langage de programmation de haut niveau. Un langage de haut niveau comme le C est un langage compréhensible par l'homme, même s'il n'est destiné qu'à produire certains énoncés. Il s'agit d'un code intermédiaire entre le numérique et le langage naturel qui doit être « traduit » en langage machine pour être exécutable. Il présente néanmoins le défaut, en tant que langage humain, de n'être compréhensible que par les programmeurs et nécessite une initiation technologique alors qu'il s'adresse à une communauté de lecteurs plus vaste. 
+
+Ainsi un mouvement --- la Perl poésie --- s'est développé autour du langage de programmation Perl. Il s'agit d'un langage qui permet de manipuler aisément des chaînes logiques. Par exemple l'œuvre suivante (Angie Winterbottom, 2000) constitue bien une partie de programme exécutable :
+
+\begin{quote}
+\begin{lstlisting}[language=perl, showlines=false, frame=none, numbers=none]
+if ((light eq dark) && (dark eq light)
+&& ($blaze_of_night{moon} == black_hole)
+&& ($ravens_wing{bright} == $tin{bright})){
+my $love = $you = $sin{darkness} + 1; };
+\end{lstlisting}
+\end{quote}
+
+Cette portion de code est également un énoncé, traduit d'un couplet de la chanson anglaise \emph{The Invocation} de l'album \emph{Original Sin} de Pandora :
+
+\begin{quote}
+If Light were dark and dark were light\\
+The moon a black hole in the blaze of night\\
+A raven's wing as bright as tin\\
+Then you, my love, would be darker than sin
+\end{quote}
+
+\end{document}

@@ -1,0 +1,126 @@
+To: wessler@unistra.fr, Eric Schnell <eric-schnell@iam-da-developper.com>,
+ Tom Ricky <tom-ricky@iam-da-developper.com>,
+ Matieux Wow <matieux@iam-da-developper.com>
+From: =?UTF-8?B?QXltw6ll?= <aymee.roger@strasbourg.fr>
+Subject: =?UTF-8?Q?Convocation_r=c3=a9union_-_application_mobile_pour_nos_to?=
+ =?UTF-8?Q?uristes?=
+Cc: Eugen Hopfner <eugen.hopfner@strasbourg.test>,
+ Justus Graebner <justus.graebner@strasbourg.test>,
+ Marcel Klostermann <marcel.klostermann@strasbourg.test>
+Date: Fri, 22 Mar 2019 13:54:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------81EBB028181701447711DB19"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------81EBB028181701447711DB19
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+
+  Objet : réunion au sujet de notre application pour nos touristes.
+
+Bonjour, voici une convocation pour notre prochaine réunion. Les détails 
+sont les suivants :
+
+
+    Lundi 1^er avril 2019, à 17h15.
+    Localisation : mairie de Strasbourg, deuxième étage en salle 201
+    (première porte sur votre droite).
+
+
+      Ordre du jour :
+
+  * Présentation avec démonstration de la future application mobile.
+  * Partage d'idées et de remarques de responsables de services de
+    l'eurométropole.
+
+Si vous ne venez pas, merci de prévenir.
+
+--------------81EBB028181701447711DB19
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div>
+      <h1>Objet : réunion au sujet de notre application pour nos
+        touristes.</h1>
+      <div class="body hello"> Bonjour, voici une convocation pour notre
+        prochaine réunion. Les détails sont les suivants : </div>
+      <h2> Lundi 1<sup>er</sup> avril 2019, à 17h15.<br>
+        <span class="loc"> Localisation : mairie de Strasbourg, deuxième
+          étage en salle 201<br>
+          (première porte sur votre droite). </span> </h2>
+      <div class="body">
+        <h3>Ordre du jour :</h3>
+        <ul>
+          <li>Présentation avec démonstration de la future application
+            mobile.</li>
+          <li>Partage d'idées et de remarques de responsables de
+            services de l'eurométropole.</li>
+        </ul>
+      </div>
+      <div class="footer"> Si vous ne venez pas, merci de prévenir. </div>
+    </div>
+    <title></title>
+    <meta charset="utf-8">
+    <style type="text/css">
+			body {
+				padding: 0.5rem;
+			}
+
+			body > div {
+				padding: 2rem;
+				border: 1px solid black;
+				max-width: 600px;
+			}
+
+			h1, h2 {
+				text-align: center;
+			}
+
+			h1 {
+				font-size: 1rem;
+			}
+
+			h2 {
+				font-size: .8rem;
+			}
+
+			h3 {
+				margin-top: 2rem;
+			}
+
+			h3, .body {
+				font-size: .9rem;
+			}
+
+			.loc {
+				margin-top: 1rem;
+				display: block;
+			}
+
+			.body {}
+
+			.footer {
+				margin-top: 2rem;
+				font-size: .7rem;
+				text-align: right;
+			}
+
+			.hello {
+				margin: 2rem 0;
+			}
+		</style>
+  </body>
+</html>
+
+--------------81EBB028181701447711DB19--

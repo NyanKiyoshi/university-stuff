@@ -1,0 +1,359 @@
+\section{OLAP}
+
+\subsection{Fonction d'agrégation}
+
+\subsubsection{Appel par ligne}
+\begin{lstlisting}[title=Afficher le numéro de ligne de chaque entrée.]
+     SELECT ROW_NUMBER() OVER() AS row_num, order_no, price FROM aroma.orders;
+\end{lstlisting}
+
+\begin{lstlisting}[language=]
+     ROW_NUM              ORDER_NO    PRICE    
+-------------------- ----------- ---------
+                   1        3602    780.00
+                   2        3604    800.66
+                   3        3615   4600.10
+                   4        3623   4425.00
+                   5        3624   4425.00
+                   6        3625   3995.95
+                   7        3621  10234.50
+\end{lstlisting}
+
+\subsubsection{Appel sur l'ensemble des lignes précédentes}
+\code{OVER(...)} nous permet d'exécuter une fonction OLAP ou du SGBD sur chaque ligne, plutôt que sur l'ensemble des lignes.
+
+\begin{lstlisting}[title=Faire la somme des moyennes au-dessus de la ligne.]
+SELECT SUM(AVG(dollars)) OVER(ORDER BY dollars ROWS UNBOUNDED PRECEDING)
+FROM aroma.sales GROUP BY dollars ORDER BY dollars;
+\end{lstlisting}
+
+\begin{lstlisting}[language=]
+     1.75000000000000000000000000
+     3.75000000000000000000000000
+     6.00000000000000000000000000
+     8.50000000000000000000000000
+    11.25000000000000000000000000
+    14.25000000000000000000000000
+    17.50000000000000000000000000
+    21.00000000000000000000000000
+\end{lstlisting}
+
+\begin{itemize}
+    \item \code{OVER(...)} indique au SGBD que la fonction \code{SUM} est une fonction d'agrégation OLAP.
+    \item \code{ROWS UNBOUNDED PRECEDING} permet d'instruire OLAP de prendre les lignes du dessus.
+    \item Le \code{ORDER BY} d'OLAP (le premier, donc) est obligatoire, car il assure que les lignes d'entrée sont correctement triées. Autrement, les résultats peuvent prendre aucun sens logique.
+    \item Le dernier \code{ORDER BY} permet de modifier l'affichage des résultats, et donc de distinguer les résultats depuis le \code{ORDER BY} de OLAP .
+\end{itemize}
+
+\subsubsection{Appel sur l'ensemble des lignes précédentes par groupe donné}
+\begin{lstlisting}
+SELECT date, SUM(dollars) FROM aroma.period a, aroma.sales b, aroma.product c 
+WHERE a.perkey = b.perkey AND c.prodkey = b.prodkey AND c.classkey = b.classkey 
+GROUP BY week, date ORDER BY week, date;
+\end{lstlisting}
+
+Permet de faire la somme des ventes sur une journée.
+
+\begin{lstlisting}
+ SELECT date, SUM(dollars), SUM(SUM(dollars)) OVER(PARTITION BY week ORDER BY date ROWS UNBOUNDED PRECEDING) FROM aroma.period a, aroma.sales b, aroma.product c WHERE a.perkey = b.perkey AND c.prodkey = b.prodkey AND c.classkey = b.classkey GROUP BY week, date ORDER BY week, date;
+
+\end{lstlisting}
+
+\begin{lstlisting}[language=]
+DATE       2                                 3                                
+---------- --------------------------------- ---------------------------------
+01/02/2004                           8851.70                           8851.70
+01/03/2004                           8039.00                          16890.70
+01/01/2005                           8988.60                          25879.30
+01/01/2006                          11529.50                          37408.80
+01/02/2006                           8795.00                          46203.80
+01/03/2006                           7825.20                          54029.00
+01/04/2006                           8849.50                          62878.50
+01/05/2006                           9964.10                          72842.60
+01/06/2006                           7788.50                          80631.10
+01/07/2006                           9598.90                          90230.00
+01/04/2004                           7828.35                           7828.35
+01/05/2004                           9036.95                          16865.30
+01/06/2004                          10089.70                          26955.00
+01/07/2004                           6798.75                          33753.75
+\end{lstlisting}
+
+\code{PARTITION BY} nous permet de faire la somme des lignes précédentes et se remet à zéro dès que la semaine change.
+
+\subsection{Opérations arithmétiques}
+\subsubsection{Opérations}
+Les opérations standards sont supportées (*, /, +, -, (, )).
+
+\begin{lstlisting}[title=Prix moyen de chaque produit par vente]
+SELECT date, SUM(dollars) as TotalSales, SUM(quantity) AS TotalQ,
+    SUM(dollars) / SUM(quantity)
+FROM aroma.period a, aroma.sales b, aroma.product c 
+WHERE a.perkey = b.perkey AND c.prodkey = b.prodkey AND c.classkey = b.classkey 
+GROUP BY week, date ORDER BY week, date;
+\end{lstlisting}
+
+\begin{lstlisting}[language=]
+DATE       TOTALSALES                        TOTALQ      4                                
+---------- --------------------------------- ----------- ---------------------------------
+01/02/2004                           8851.70        1246                              7.10
+01/03/2004                           8039.00        1212                              6.63
+01/04/2004                           7828.35        1067                              7.33
+01/05/2004                           9036.95        1261                              7.16
+01/06/2004                          10089.70        1390                              7.25
+01/07/2004                           6798.75        1014                              6.70
+01/08/2004                           7989.05        1024                              7.80
+01/09/2004                           8416.45        1179                              7.13
+01/10/2004                           5809.80         841                              6.90
+01/11/2004                           7483.55        1109                              6.74
+01/12/2004                           9423.05        1272                              7.40
+01/13/2004                           7890.85        1117                              7.06
+01/14/2004                           8324.95        1142                              7.28
+01/15/2004                           7693.70        1089                              7.06
+01/16/2004                           8270.40        1117                              7.40
+01/17/2004                           6564.00         928                              7.07
+01/18/2004                           9736.95        1328                              7.33
+\end{lstlisting}
+
+\subsubsection{Changement de précision décimale}
+\code{DEC(VAL, NB\_DIGITS\_BEFORE, NB\_AFTER)}, par exemple \code{DEC(1, 5, 2)}.
+
+% Section 5 is going on here
+\subsection{Comparaison de deux totaux}
+Pour cela, on va pouvoir faire deux jointures (sur les dates) et un soustraction sur les résultats.
+
+\begin{lstlisting}
+SELECT t1.date, sales_cume_west, sales_cume_south,
+                sales_cume_west - sales_cume_south AS west_vs_south
+FROM
+    (SELECT date, SUM(dollars) AS total_sales,
+        SUM(SUM(dollars)) OVER(ORDER BY date
+            ROWS UNBOUNDED PRECEDING) as sales_cume_west
+        FROM aroma.market a,
+             aroma.store b,
+             aroma.sales c,
+             aroma.period d
+        WHERE  a.mktkey = b.mktkey
+            AND b.storekey = c.storekey
+            AND d.perkey = c.perkey
+            AND year = 2006
+            AND month = 'MAR'
+            AND region = 'West'
+        GROUP BY date) AS t1
+JOIN
+    (SELECT date, SUM(dollars) AS total_sales,
+        SUM(SUM(dollars)) OVER(ORDER BY date
+            ROWS UNBOUNDED PRECEDING) AS sales_cume_south
+        FROM aroma.market a,
+             aroma.store b,
+             aroma.sales c,
+             aroma.period d
+        WHERE a.mktkey = b.mktkey
+            AND b.storekey = c.storekey
+            AND d.perkey = c.perkey
+            AND year = 2006
+            AND month = 'MAR'
+            AND region = 'South'
+        GROUP BY date) AS t2
+ON t1.date = t2.date
+ORDER BY date;
+\end{lstlisting}
+
+\begin{lstlisting}[language=]
+DATE       SALES_CUME_WEST           SALES_CUME_SOUTH      WEST_VS_SOUTH         
+---------- ------------------------- -------------------- --------------
+03/01/2006       2529.25              2056.75                472.50
+03/02/2006       6809.00              4146.75               2662.25
+03/03/2006       9068.75              6366.55               2702.20
+03/04/2006      12679.35              8831.30               3848.05
+03/05/2006      16228.60             11100.55               5128.05
+03/06/2006      19653.30             12665.65               6987.65
+03/07/2006      23515.55             14882.90               8632.65
+03/08/2006      27207.80             17494.15               9713.65
+03/09/2006      31725.95             19745.40              11980.55
+03/10/2006      34836.20             21323.40              13512.80
+03/11/2006      38257.00             23256.15              15000.85
+03/12/2006      42498.20             25091.35              17406.85
+03/13/2006      46691.95             27362.85              19329.10
+\end{lstlisting}
+
+\subsection{La moyenne des sommes par partition}
+Ici on veut calculer la moyenne des ventes par ville par trois semaines. Pour cela, on fera :
+
+\begin{lstlisting}
+SELECT city, week, SUM(dollars) AS sales,
+    AVG(SUM(dollars)) OVER(PARTITION by city 
+        ORDER BY city, week ROWS 2 PRECEDING) AS mov_avg,
+    SUM(SUM(dollars)) OVER(PARTITION BY city
+        ORDER BY week ROWS unbounded PRECEDING) AS run_sales
+FROM aroma.store a,
+     aroma.sales b,
+     aroma.period c
+WHERE a.storekey = b.storekey
+    AND c.perkey = b.perkey
+    AND qtr = 'Q3_05'
+    AND city IN ('San Jose', 'Miami')
+GROUP BY city, week;
+\end{lstlisting}
+
+\begin{lstlisting}[language=]
+CITY           WEEK        SALES       MOV_AVG      RUN_SALES                        
+------------ ----------- ---------     ----------  ----------------
+Miami          27         1838.55       1838.55       1838.55
+Miami          28         4482.15       3160.35       6320.70
+Miami          29         4616.70       3645.80       10937.40
+Miami          30         4570.35       4556.40       15507.75
+Miami          31         4681.95       4623.00       20189.70
+Miami          32         3004.50       4085.60       23194.20
+Miami          33         3915.90       3867.45       27110.10
+Miami          34         4119.35       3679.91       31229.45
+Miami          35         2558.90       3531.38       33788.35
+Miami          36         4556.25       3744.83       38344.60
+Miami          37         5648.50       4254.55       43993.10
+Miami          38         5500.25       5235.00       49493.35
+Miami          39         4891.40       5346.71       54384.75
+Miami          40         3693.80       4695.15       58078.55
+San Jose       27         3177.55       3177.55       3177.55
+San Jose       28         5825.80       4501.67       9003.35
+San Jose       29         8474.80       5826.05       17478.15
+San Jose       30         7976.60       7425.73       25454.75
+San Jose       31         7328.65       7926.68       32783.40
+San Jose       32         6809.75       7371.66       39593.15
+San Jose       33         7116.35       7084.91       46709.50
+San Jose       34         6512.35       6812.81       53221.85
+San Jose       35         6911.50       6846.73       60133.35
+San Jose       36         5996.10       6473.31       66129.45
+San Jose       37         10000.60      7636.06       76130.05
+San Jose       38         7274.70       7757.13       83404.75
+San Jose       39         9021.15       8765.48       92425.90
+San Jose       40         5045.20       7113.68       97471.10
+\end{lstlisting}
+
+Noter le \code{ROWS n PRECEDING} qui indique qu'on veut regarder les \code{n} lignes précédentes + la ligne courante.
+
+\subsection{Classer les données par rang}
+On va classer les magasins qui vendent les plus.
+
+\begin{lstlisting}
+SELECT store_name, district, SUM(dollars) AS total_sales,
+    RANK() OVER(ORDER BY SUM(dollars) DESC) AS rank
+FROM aroma.market a,
+     aroma.store b,
+     aroma.sales c,
+     aroma.period d
+WHERE a.mktkey = b.mktkey
+    AND b.storekey = c.storekey
+    AND d.perkey = c.perkey
+    AND year = 2005
+    AND month = 'MAR'
+    AND region = 'West'
+GROUP BY store_name, district;
+\end{lstlisting}
+
+\begin{lstlisting}[language=]
+STORE_NAME                     DISTRICT             TOTAL_SALES                       RANK                
+------------------------------ -------------------- ---------------------------------
+Cupertino Coffee Supply        San Francisco                                 18670.50                    1
+Java Judy's                    Los Angeles                                   18015.50                    2
+Beaches Brew                   Los Angeles                                   18011.55                    3
+San Jose Roasting Company      San Francisco                                 17973.90                    4
+Instant Coffee                 San Francisco                                 15264.50                    5
+Roasters, Los Gatos            San Francisco                                 12836.50                    6
+\end{lstlisting}
+
+Noter, qu'il existe \code{DENSE\_RANK} qui fait la même chose que \code{RANK}, sauf qui si plusieurs lignes ont le même rang, le rang suivant sera incrémenté par rapport au nombre de rang identiques.
+
+\begin{lstlisting}[language=]
+DENSE_RANK     RANK
+1              1
+2              2
+3              3
+3              3
+5              4
+6              5
+\end{lstlisting}
+
+\subsection{Opérations sur les dates}
+Avec les fonctions OLAP, on peut facilement faire des calculs arithmétiques sur des dates.
+
+\begin{lstlisting}
+SELECT date - 2 MONTHS - 10 DAYS as due_date,
+    date AS cur_date,
+    date + 2 MONTHS + 10 DAYS AS past_due
+FROM aroma.period
+WHERE year = 2004
+    AND MONTH = 'JAN';
+\end{lstlisting}
+
+\begin{lstlisting}[language=]
+DUE_DATE   CUR_DATE   PAST_DUE  
+---------- ---------- ----------
+10/22/2003 01/01/2004 03/11/2004
+10/23/2003 01/02/2004 03/12/2004
+10/24/2003 01/03/2004 03/13/2004
+10/25/2003 01/04/2004 03/14/2004
+10/26/2003 01/05/2004 03/15/2004
+\end{lstlisting}
+
+Idem pour \code{YEARS}, \code{MONTHS}, \code{DAYS}, \code{HOURS}, \code{MINUTES}, et \code{SECONDS}.
+
+\subsection{Having et Where}
+\begin{description}
+    \item[Having] agit sur les données après le groupage et on peut utiliser toute fonction, colonne ou ensemble de données.
+    
+    \item[Where] agit sur les données avant le groupage, mais ne peut pas utiliser les fonctions d'ensembles (SUM, AVG, ...).
+\end{description}
+
+\subsubsection{Exemple}
+\begin{lstlisting}
+SELECT MIN(prodkey), MAX(classkey)
+FROM aroma.product
+HAVING MIN(prodkey) = 0;
+\end{lstlisting}
+
+\begin{lstlisting}[language=]
+1           2          
+----------- -----------
+          0          12
+\end{lstlisting}
+
+\subsection{Faire la somme par valeur de champ via un switch-case}
+\begin{lstlisting}
+SELECT prod_name,
+    SUM(CASE WHEN store_name = 'Beaches Brew'
+        THEN dollars ELSE 0 END) AS Beaches,
+    SUM(CASE WHEN store_name = 'Cupertino Coffee Supply'
+        THEN dollars ELSE 0 END) as Cupertino
+FROM aroma.market a,
+     aroma.store b,
+     aroma.period c,
+     aroma.product d,
+     aroma.class e,
+     aroma.sales f
+WHERE a.mktkey = b.mktkey
+    AND b.storekey = f.storekey
+    AND c.perkey = f.perkey
+    AND d.classkey = e.classkey
+    AND d.classkey = f.classkey
+    AND d.prodkey = f.prodkey
+    AND region LIKE 'West%'
+    AND year = 2004
+    AND class_type = 'Pkg_coffee'
+GROUP BY prod_name
+ORDER BY prod_name;
+\end{lstlisting}
+
+\begin{lstlisting}[language=]
+PROD_NAME                      BEACHES                           CUPERTINO                        
+------------------------------ --------------------------------- 
+Aroma Roma                                               3483.50                           4491.00
+Cafe Au Lait                                             3129.50                           4375.50
+Colombiano                                               2298.25                           2653.50
+Demitasse Ms                                             4529.25                           3936.50
+Expresso XO                                              4132.75                           4689.25
+La Antigua                                               4219.75                           2932.00
+Lotta Latte                                              3468.00                           5146.00
+NA Lite                                                  4771.00                           4026.00
+Veracruzano                                              4443.00                           3285.00
+Xalapa Lapa                                              4304.00                           5784.00
+\end{lstlisting}
+

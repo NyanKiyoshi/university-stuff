@@ -1,0 +1,184 @@
+% !TeX spellcheck = fr_FR
+\documentclass[final, a4paper, 11pt]{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{fullpage}
+\usepackage{float}
+\usepackage{mdframed}
+\usepackage[margin=2cm]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage[
+    left = «~,% 
+    right = ~»]{dirtytalk}
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{
+    escapechar=\%,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showlines=true,
+    showstringspaces=false,
+    emptylines=2,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    numberstyle=\small, 
+    numbersep=8pt,
+    numbers=left,
+    frame=single,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+}
+
+%%% Commands
+\newcommand{\code}[1]{
+    \boxed{\texttt{#1}}
+}
+
+\begin{document}
+
+\noindent
+\large\textbf{C41 - Le rapport de stage et la soutenance} \hfill \textbf{KOCAK Mikail} \\
+\normalsize M. Wressler \hfill 15 février 2019 \\[1pt]
+
+\tableofcontents
+
+\section{Introduction}
+\subsection{Le rapport}
+Au moment où l'on commence le rapport, il faut penser à l'oral, s'imaginer les deux en même temps. L'oral sera fait en fonction du rapport.
+
+Le rapport sera :
+\begin{description}
+	\item[factuel,] il racontera ce qu'on a fait. On doit pouvoir s'imaginer une journée type du stage (mais ce n'est pas un tableau de bord !).
+	
+	\item[démonstration,] il faut démontrer, expliquer une idée informatique et expliquer la solution informatique. De plus, expliquer son intérêt dans le futur, il faut discuter notre propre solution, la débattre, pourquoi c'est la bonne.
+\end{description}
+
+Le rapport ne peut pas dire n'importe quoi, certaines choses en tant qu'employé on n'a pas la même liberté d'expression.
+
+\subsection{La soutenance}
+La soutenance n'est pas réellement une soutenance, on sera dans une salle avec 12 personnes où uniquement deux ou trois personnes ont lu le rapport. Il faut donc présenter son rapport aux personnes qui ne l'ont pas lu. À l'oral on ne fera pas un résumé du rapport, car ceux qui l'ont lu veulent avoir autre chose, il faut répéter le rapport le moins possible. Une astuce serait de parler d'une tâche accomplie durant notre stage, mais qu'on pense très bonne pour l'oral; du coup on ne la développera pas, et on la gardera pour l'oral.
+
+\section{Le rapport}
+\subsection{Les objectifs}
+\subsubsection{La page de couverture}
+Mettre :
+\begin{itemize}
+	\item Le logo de l'entreprise et de l'IUT ;
+	\item En titre ce qu'on a fait, la problématique (ex.: développement d'une application de gestion des notes) ;
+	\item En sous-titre \say{rapport de stage} ;
+	\item \say{DUT Informatique Deuxième Année 2019} ;
+	\item La période du stage (du ... au ...) ;
+	\item Où ça.
+\end{itemize}
+
+\subsubsection{Réutilisabilité du rapport}
+Il faut noter que ce rapport sera conservé par l'entreprise, et d'autres personnes le liront probablement. Ces personnes seront probablement des stagiaires qui devront reprendre votre travail.
+
+Il faut donc une problématique au rapport et une conclusion.
+
+\subsection{Le contenu}
+\subsubsection{Une introduction}
+Il faut présenter le problème qu'on doit résoudre, notre mission ou nos missions. Une bonne introduction fait au moins 20 lignes, et moins d'une page et demie.
+
+Dans cette introduction il faut une accroche, faire comprendre au lecteur qu'il est concerné. Pour cela, il ne faut pas oublier de parler de soi-même et donner un problème à résoudre, pourquoi et comment l'entreprise doit se démarquer et pourquoi notre mission est importante pour cette entreprise.
+
+\subsubsection{Le contenu informatique}
+On décrit un problème informatique et la solution. Il faudra jongler d'extraits de codes, à une explication globale de l'entreprise.
+
+Il faut se demander pourquoi on a fait ça et pas autrement.
+
+\subsubsection{Un glossaire}
+Définir quelques mots informatiques (ou non), les notions importantes. Mais pas inclure les choses basiques (ex. : HTML). Il faut s'adresser pour quelqu'un de curieux qui a déjà des bases en informatique.
+
+De plus, on peut regarder les glossaires en ligne plutôt que de chercher nous-même à définir, si on a du mal. Et donc citer le glossaire en bas de page.
+
+\subsubsection{La présentation de l'entreprise et du contexte professionnel}
+C'est la première partie du rapport (\say{I}), on présente l'entreprise, éventuellement son implémentation dans le monde, le service/ département dans lequel on a travaillé, etc. Cela fera entre trois et six pages. Si on veut déborder sur l'entreprise, on peut rediriger le lecteur, si intéressé, vers les annexes.
+
+\subsection{La problématisation du contenu, le sommaire et les titres}
+Il faut faire attention à la manière dont les titres sont formulés. Il faut qu'on puisse lire le sommaire et de suite savoir ce qu'on a fait (ex. : le développement chez Machin, Inc.).
+
+Si on a eu plusieurs missions/ projets, il faut les grouper ensemble, et non pas les séparer de manière chronologique.
+
+L'introduction et la conclusion ne prennent pas de numéro.
+
+\subsection{La mise en forme}
+Voir TP.
+
+\subsection{La forme}
+\href{https://ged.unistra.fr/nuxeo/nxfile/default/2f907782-9fe9-4b62-a9d8-4b8f883e6510/blobholder:0/Conseils\%20pour\%20le\%20rapport\%20et\%20la\%20soutenance.pdf}{Voir les conseils postés sur le site de la G.E.D.}
+
+Sur le document, on devra mettre :
+\begin{enumerate}
+	\item Une page de couverture ;
+	\item Une page de remerciement (le mettre de stage, qui nous a accueilli ; le personnel de l'IUT qui nous a aidé ; ...) ;
+	\item Le sommaire, sur une page ;
+	\item Une page d'introduction ;
+	\item Les questions informatiques et bilans... (15-20 pages) ;
+	\item Une conclusion ;
+	\item Une table des illustrations ;
+	\item Sources, bibliographie, documents consultés ;
+	\item Table des annexes ;
+	\item Annexes, documents techniques, diagrammes, photo du bureau, ...
+\end{enumerate}
+
+\section{L'oral de présentation (\say{soutenance})}
+Dans notre cas, c'est un exercice principalement de communication, que d'informatique.
+
+\subsection{L'organisation}
+La soutenance dure 15 minutes, maximum (sauf raison technique demandée à l'avance).
+
+\begin{itemize}
+	\item Bien se tenir
+	\item Regarder les gens
+	\item S'exprimer clairement
+	\item Il faut être convainquant, que ce qu'on a fait durant le stage était un travail de qualité et de bon informaticien, et utile pour vos études.
+\end{itemize}
+
+\subsection{Le contenu}
+\begin{itemize}
+	\item Il faut se présenter et dire où on a travaillé ;
+	\item Avoir une nouvelle problématique et une accroche ;
+\end{itemize}
+
+Exemples de types de problématiques :
+\begin{itemize}
+	\item Ce stage a été enrichissant grâce à... (trois, quatre points) ;
+	\item Une expérience m'a permise d'acquérir telle compétence... ;
+	\item Une discussion sur un point informatique, un avis... ;
+	\item J'ai appris ça dans tel module, et dans le terrain j'ai...
+	\item Comment le fonctionnement de l'entreprise a été perçu en tant qu'informaticien.
+\end{itemize}
+
+Ne pas présenter :
+\begin{itemize}
+	\item L'entreprise plus qu'une minute ;
+	\item Le cursus de DUT.
+\end{itemize}
+
+\subsection{Les questions}
+
+
+\section{Notes}
+Il faudra rendre le rapport de stage en PDF une semaine avant, le tuteur le corrigera puis on devra l'imprimer en trois exemplaires après correction. Il faudra relier les exemplaires.
+
+\section{Évaluation}
+\begin{itemize}
+	\item TP du 22 mars 2019 (coefficient ½), rédiger la convocation d'une réunion.
+	\item Un oral individuel de 5 minutes sans préparation, avec CV papier (barème envoyé par courriel).
+	\item TP du 29 mars 2019, écrit noté de 1h50 sur un dossier.
+\end{itemize}
+
+\end{document}
